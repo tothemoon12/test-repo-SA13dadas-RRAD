@@ -15,6 +15,7 @@ public class GoogleSearchResultsPage extends BasePage {
 
     public GoogleSearchResultsPage(WebDriver driver) {
         super(driver);
+
         waitForElementVisible(searchResultsDivLocator);
         searchResultsElement = driver.findElement(searchResultsDivLocator);
         searchResultsElementsList = searchResultsElement.findElements(By.xpath("./div"))
@@ -25,9 +26,12 @@ public class GoogleSearchResultsPage extends BasePage {
 
     public WebPage openSearchResultByNumber(int number) {
         String url = searchResultsElementsList.get(number - 1).findElement(By.xpath(".//a[1]")).getAttribute("href");
-        System.out.println(url);
         driver.get(url);
+
         return new WebPage(driver);
+    }
+    public String getSearchResultUrl(int number){
+        return searchResultsElementsList.get(number - 1).findElement(By.xpath(".//a[1]")).getAttribute("href");
     }
 
 }

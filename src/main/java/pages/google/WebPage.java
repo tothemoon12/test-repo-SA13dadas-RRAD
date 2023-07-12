@@ -1,5 +1,6 @@
 package pages.google;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.BasePage;
 
@@ -20,7 +21,7 @@ public class WebPage extends BasePage {
     public GoogleSearchResultsPage returnToGoogleSearchResultsPage() {
 
         driver.navigate().back();
-
+        waitForElementVisible(By.xpath("//title[text()]"));
         return new GoogleSearchResultsPage(driver);
     }
 }
