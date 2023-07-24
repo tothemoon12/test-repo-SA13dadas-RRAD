@@ -12,8 +12,7 @@ public class GoogleSearchMainPage extends BasePage {
     private WebElement searchFormElement;
 
 
-    public GoogleSearchMainPage(WebDriver driver) {
-        super(driver);
+    public GoogleSearchMainPage() {
     }
 
     public GoogleSearchMainPage openPage() {
@@ -32,6 +31,6 @@ public class GoogleSearchMainPage extends BasePage {
     public GoogleSearchResultsPage selectFirstResultFromListBox(){
         waitForElementVisible(By.xpath("//div[@jscontroller='Dvn7fe' and @style='']"));
         inputHandler.clickOnFirstElementOfListBox(searchFormElement.findElement(By.xpath("//ul[@role='listbox']")));
-        return new GoogleSearchResultsPage(driver);
+        return new GoogleSearchResultsPage();
     }
 }

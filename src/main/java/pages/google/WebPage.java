@@ -7,8 +7,7 @@ import pages.BasePage;
 import java.util.Map;
 
 public class WebPage extends BasePage {
-    public WebPage(WebDriver driver) {
-        super(driver);
+    public WebPage() {
     }
 
     public WebPage parsePageTitleAndPutToMap(Map<String, String> map) {
@@ -22,6 +21,6 @@ public class WebPage extends BasePage {
 
         driver.navigate().back();
         waitForElementVisible(By.xpath("//title[text()]"));
-        return new GoogleSearchResultsPage(driver);
+        return new GoogleSearchResultsPage();
     }
 }

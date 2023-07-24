@@ -4,19 +4,30 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.common.InputHandler;
+import utils.DriverManager;
 
 import java.time.Duration;
+import java.util.Objects;
 
-public class BasePage {
-    public WebDriver driver;
+public abstract class BasePage {
+    public static WebDriver driver;
     protected InputHandler inputHandler = new InputHandler();
     protected WebDriverWait w;
 
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
+    //    public BasePage(WebDriver driver) {
+//        this.driver = driver;
+//        w = new WebDriverWait(driver, Duration.ofSeconds(10));
+//    }
+    public BasePage() {
+        PageFactory.initElements(DriverManager.getDriver(), this);
+        if (Objects.isNull(DriverManager.getDriver())) {
+            DriverManager.setupDriver();
+            driver = DriverManager.getDriver();
+        }
         w = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
@@ -27,7 +38,8 @@ public class BasePage {
 
     protected void waitForChildElementVisible(WebElement element, By locator) {
     }
-    protected boolean isElementPresent(By by){
+
+    protected boolean isElementPresent(By by) {
         boolean present;
         try {
             driver.findElement(by);
@@ -37,7 +49,8 @@ public class BasePage {
         }
         return present;
     }
-    protected boolean isChildElementPresent(WebElement element, By by){
+
+    protected boolean isChildElementPresent(WebElement element, By by) {
         boolean present;
         try {
             element.findElement(by);
@@ -47,7 +60,8 @@ public class BasePage {
         }
         return present;
     }
-    public String getCurrentUrl(){
+
+    public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
 }

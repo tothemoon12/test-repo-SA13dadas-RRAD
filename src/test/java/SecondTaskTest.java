@@ -15,7 +15,7 @@ public class SecondTaskTest extends BaseTest {
         WebPage webPage;
         String searchResultUrl;
 
-        GoogleSearchResultsPage searchResultsPage = new GoogleSearchMainPage(getDriver())
+        GoogleSearchResultsPage searchResultsPage = new GoogleSearchMainPage()
                 .openPage()
                 .enterSearchKey("Selenuim")
                 .selectFirstResultFromListBox();
